@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import {
     Table,
-    Image
-}from 'react-bootstrap'
+    Image,
+} from 'react-bootstrap'
 class Location extends Component {
     render() {
         return (
-            <div style={{marginTop:"20px"}}>
+            <div style={{ marginTop: "20px" }}>
                 {/* <h1>{this.props.city_name}</h1>
                 <h2>{this.props.type}</h2>
                 <h3>{this.props.lat}/{this.props.lon}</h3> */}
@@ -24,10 +24,11 @@ class Location extends Component {
                             <td>{this.props.lat}</td>
                             <td>{this.props.lon}</td>
                         </tr>
-                        
+
                     </tbody>
                 </Table>
-                <Image style={{marginLeft:"30%"}} src={this.props.img} roundedCircle />
+                <Image style={{ marginLeft: "30%" }} src={this.props.img} roundedCircle />
+                
             </div>
         )
     }
