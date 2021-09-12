@@ -11,7 +11,9 @@ export class App extends Component {
       type: "",
       lat: "",
       lon: "",
-      showData: false
+      zoom:"",
+      img:"",
+      showData: false,
     }
   }
   handleLocation = (e) => {
@@ -26,8 +28,9 @@ export class App extends Component {
       method: "GET",
       baseURL: `https://api.locationiq.com/v1/autocomplete.php?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city_name}`
     }
+    
     axios(config).then(res => {
-      console.log(res.data)
+      console.log(res.data);
       let reponseData=res.data[0];
       this.setState({
         city_name:reponseData.display_name,
@@ -35,7 +38,20 @@ export class App extends Component {
         lat: reponseData.lat,
         showData:true, 
       })
+      let map ={
+        method: "GET",
+        baseURL: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.lat},${this.state.lon}&zoom=1-18`
+      }
+      axios(map).then(res=>{
+        let reponseData=res.config.baseURL;
+        console.log(axios(map));
+        this.setState({
+          img:reponseData,
+      })
+      })
     })
+
+
   }
   render() {
     return (
@@ -48,6 +64,7 @@ export class App extends Component {
             type={this.state.type}
             lat={this.state.lat}
             lon={this.state.lon}
+            img={this.state.img}
           />
         }
       </div>
