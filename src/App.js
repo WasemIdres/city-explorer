@@ -3,6 +3,8 @@ import Location from './components/Location';
 import SearchForm from './components/SearchForm';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Alert,
+} from 'react-bootstrap'
 export class App extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +13,11 @@ export class App extends Component {
       type: "",
       lat: "",
       lon: "",
-      showData: false
+      zoom:"",
+      img:"",
+      error:{},
+      showData: false,
+      errHandle:false,
     }
   }
   handleLocation = (e) => {
@@ -26,16 +32,33 @@ export class App extends Component {
       method: "GET",
       baseURL: `https://api.locationiq.com/v1/autocomplete.php?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city_name}`
     }
+    
     axios(config).then(res => {
-      console.log(res.data)
+      console.log(res.data);
+      
       let reponseData=res.data[0];
       this.setState({
+        
         city_name:reponseData.display_name,
         lon: reponseData.lon,
         lat: reponseData.lat,
         showData:true, 
       })
-    })
+
+      let map ={
+        method: "GET",
+        baseURL: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.lat},${this.state.lon}&zoom=1-18`
+      }
+      axios(map).then(res=>{
+        let reponseData=res.config.baseURL;
+        console.log(axios(map));
+        this.setState({
+          img:reponseData,
+      })
+      })
+    })    .catch(err => {  this.setState({error:err.toString() , errHandle:true}) })
+
+
   }
   render() {
     return (
@@ -48,8 +71,14 @@ export class App extends Component {
             type={this.state.type}
             lat={this.state.lat}
             lon={this.state.lon}
+            img={this.state.img}
           />
         }
+        {
+        this.state.errHandle&&<Alert  >
+                {this.state.error}
+                </Alert>
+  }
       </div>
     )
   }
