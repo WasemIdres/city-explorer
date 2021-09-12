@@ -70,3 +70,53 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 ![img](./Untitled.jpg)
+
+# Project Name
+
+**Author**: Wasem Idrees
+**Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
+
+## Overview
+an website that gives latitude longitude to the city the user enters and gives a map to its location on the map
+
+## Getting Started
+open the website 
+enter a city name
+press on explore
+
+## Architecture
+react js
+bootstrap
+locationiq.com APIs
+
+
+## Change Log
+
+first launch 7:30pm
+
+## Credit and Collaborations
+
+locationiq.com
+
+google.com
+
+bootstrap
+
+Mohammad Alwwrekat
+
+yassen 
+
+Name of feature:
+
+- form
+- API
+- Bootstrap
+- Error handling
+
+Estimate of time needed to complete: 3 hours
+
+Start time: 2:30
+
+Finish time: 7:30
+
+Actual time needed to complete: a lot of time 
