@@ -120,3 +120,13 @@ Start time: 2:30
 Finish time: 7:30
 
 Actual time needed to complete: a lot of time 
+
+---
+
+Estimate of time needed to complete: 4 hours
+
+Start time: 2:30
+
+Finish time: 9:00
+
+Actual time needed to complete: a lot of time 
