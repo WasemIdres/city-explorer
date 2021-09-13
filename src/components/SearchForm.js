@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import style from './style.css';
 class SerachFrom extends Component {
     render() {
         return (
@@ -8,9 +8,10 @@ class SerachFrom extends Component {
                     <input type="text"
                         placeholder="Please enter a city name..."
                         onChange={this.props.handleLocation}
+                        id={"submitField"}
                     />
-                    <input type="submit" value="Explore!" />
-                </form>
+                    <input id={"submitBtn"} type="submit" value="Explore!" />
+                </form> 
             </div>
         )
     }

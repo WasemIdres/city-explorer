@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Location from './components/Location';
 import SearchForm from './components/SearchForm';
 import axios from 'axios';
+import style from './components/style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Alert,
 } from 'react-bootstrap'
@@ -62,8 +63,8 @@ export class App extends Component {
   }
   render() {
     return (
-      <div>
-        <h1>Welcome to City explorer</h1>
+      <div className="mainDiv">
+        <h1 className="headerTxt">Welcome to City explorer</h1>
         <SearchForm handleLocation={this.handleLocation} handleSubmit={this.handleSubmit} />
         {
           this.state.showData &&

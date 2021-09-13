@@ -1,0 +1,31 @@
+*{
+    background-color: aliceblue;
+}
+
+.headerTxt{
+    color: cornflowerblue;
+  
+}
+form 
+#submitBtn{
+    background-color: green;
+    border: none;
+    margin-left: 20px ;
+    color: ghostwhite;
+    padding: 3px 5px;
+}
+#submitField{
+width: 430px;
+}
+#table{
+    width: 900px;
+    color: chocolate;
+}
+#table td{
+    color: deepskyblue;
+}
+
+img{
+    margin-left: 10%;
+    height: 450px;
+}

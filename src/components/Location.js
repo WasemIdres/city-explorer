@@ -3,6 +3,7 @@ import {
     Table,
     Image,
 } from 'react-bootstrap'
+import style from './style.css';
 class Location extends Component {
     render() {
         return (
@@ -10,7 +11,7 @@ class Location extends Component {
                 {/* <h1>{this.props.city_name}</h1>
                 <h2>{this.props.type}</h2>
                 <h3>{this.props.lat}/{this.props.lon}</h3> */}
-                <Table striped bordered hover variant="dark" >
+                <Table striped bordered hover variant="dark" id={"table"} >
                     <thead>
                         <tr>
                             <th>City Name</th>
@@ -27,7 +28,7 @@ class Location extends Component {
 
                     </tbody>
                 </Table>
-                <Image style={{ marginLeft: "30%" }} src={this.props.img} roundedCircle />
+                <Image  src={this.props.img} roundedCircle />
                 
             </div>
         )
