@@ -1,7 +1,3 @@
-*{
-    background-color: aliceblue;
-}
-
 .headerTxt{
     color: cornflowerblue;
   
@@ -37,4 +33,27 @@ width: 430px;
 img{
     margin-left: 10%;
     height: 450px;
+}
+
+#carouselDiv{
+    width: 400px;
+    margin-left: 12%;
+    margin-top: 15px;
+}
+.Carousel{
+    background-color: #000000;
+    background-color: #000000;
+}
+.Carousel .color{
+    background-color: #000000;
+    color: white;
+}
+.ele{
+    background-color: #000000;
+}
+.carousel-indicators{
+    display: none;
+}
+.carousel-control-prev{
+    display: none;
 }

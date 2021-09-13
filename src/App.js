@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import Location from './components/Location';
 import SearchForm from './components/SearchForm';
+import Weather from './components/Weather';
 import axios from 'axios';
 import style from './components/style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Alert,
 } from 'react-bootstrap'
+
 export class App extends Component {
   constructor(props) {
     super(props);
@@ -16,9 +18,13 @@ export class App extends Component {
       lon: "",
       zoom:"",
       img:"",
-      error:{},
+      error:"",
+      error2:"",
       showData: false,
       errHandle:false,
+      errHandle2:false,
+      city_name:"",
+      foreCast:[],
     }
   }
   handleLocation = (e) => {
@@ -35,8 +41,6 @@ export class App extends Component {
     }
     
     axios(config).then(res => {
-      console.log(res.data);
-      
       let reponseData=res.data[0];
       this.setState({
         
@@ -52,14 +56,20 @@ export class App extends Component {
       }
       axios(map).then(res=>{
         let reponseData=res.config.baseURL;
-        console.log(axios(map));
         this.setState({
           img:reponseData,
       })
       })
-    })    .catch(err => {  this.setState({error:err.toString() , errHandle:true}) })
-
-
+    }).catch(err => {  this.setState({error:err.toString() , errHandle:true}) }).then(()=>
+    axios.get(`http://${process.env.REACT_APP_BACKEND_URL}/weather?lat=${this.state.lat}&lon=${this.state.lon}`))
+    .then(res=>{
+      console.log(res.data)
+      this.setState({
+        city_name:res.data.cityName,
+        foreCast:res.data.foreCast,
+    })
+    }).catch(err =>   this.setState({error2:err.toString() , errHandle2:true})  )
+    
   }
   render() {
     return (
@@ -67,17 +77,30 @@ export class App extends Component {
         <h1 className="headerTxt">Welcome to City explorer</h1>
         <SearchForm handleLocation={this.handleLocation} handleSubmit={this.handleSubmit} />
         {
-          this.state.showData &&
-          <Location city_name={this.state.city_name}
+         this.state.showData && <Location city_name={this.state.city_name}
             type={this.state.type}
             lat={this.state.lat}
             lon={this.state.lon}
             img={this.state.img}
           />
-        }
+       }
         {
-        this.state.errHandle&&<Alert  >
+           this.state.showData &&<Weather
+          city_name={this.state.city_name}
+          foreCast={this.state.foreCast}
+        />
+      }
+        
+            
+          
+        {
+        this.state.errHandle&&<Alert style={{marginTop:"15px"}} >
                 {this.state.error}
+                </Alert>
+  }
+  {
+        this.state.errHandle2&&<Alert  >
+                {this.state.error2}
                 </Alert>
   }
       </div>
