@@ -34,12 +34,12 @@ export class App extends Component {
   handleLocation = (e) => {
     let city_name = e.target.value;
     this.setState({
-      city_name: city_name
+      city_name: city_name,
+      name :city_name,
     })
   }
   handleSubmit = (e) => {
       e.preventDefault();
-    this.setState({name:this.state.city_name})
     let config = {
       method: "GET",
       baseURL: `https://api.locationiq.com/v1/autocomplete.php?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&
@@ -68,21 +68,22 @@ export class App extends Component {
       })
       })
     }).catch(err => {  this.setState({error:err.toString() , errHandle:true}) }).then(()=>
-    axios.get(`http://${process.env.REACT_APP_BACKEND_URL}/weather?lat=${this.state.lat}&lon=${this.state.lon}`))
+    axios.get(`https://city-explorer-api-100.herokuapp.com/weather?lat=${this.state.lat}&lon=${this.state.lon}`))
     .then(res=>{
       console.log(res.data)
       this.setState({
-        foreCast:res.data,
+        foreCast : res.data,
     })
     }).catch(err =>   this.setState({error2:err.toString() , errHandle2:true})  ).then(()=>
-    axios.get(`http://${process.env.REACT_APP_BACKEND_URL}/movies?query=${this.state.name}`))
+    axios.get(`https://city-explorer-api-100.herokuapp.com/movies?query=${this.state.name}`))
     .then(res=>{
-      
+    console.log(res.data);
       this.setState({
-        movieList:res.data,
+        movieList : res.data,
     })
     }).catch(err => {  this.setState({error3:err.toString() , errHandle3:true}) })
     console.log(this.state.movieList)
+    console.log(this.state.foreCast)
     
     
   }
@@ -114,7 +115,7 @@ export class App extends Component {
                 {this.state.error2}
                 </Alert>
   }
-  {this.state.showData && <Movie movieList={this.state.movieList} />}
+  {this.state.showData&& <Movie movieList={this.state.movieList} />}
   {
         this.state.errHandle2&&<Alert  >
                 {this.state.error3}
