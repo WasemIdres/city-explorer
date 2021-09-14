@@ -6,7 +6,7 @@ import {
 import style from './style.css';
 class Weather extends Component {
     render() {
-        console.log(this.props.foreCast)
+        // console.log(this.props.foreCast)
         return (
             <div id={"carouselDiv"}>
 
@@ -21,7 +21,7 @@ class Weather extends Component {
                                     alt="First slide"
                                 />
                                 <Carousel.Caption className="color">
-                                    <h3 className="ele">City Name :{this.props.city_name}</h3>
+                                    <h3>Forecast Daily</h3>
                                     <p className="ele">Date :{Element.date}</p>
                                     <p className="ele">Description :{Element.description}</p>
                                 </Carousel.Caption>
