@@ -5,6 +5,7 @@ import Weather from './components/Weather';
 import axios from 'axios';
 import style from './components/style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Movie from './components/Movie';
 import { Alert,
 } from 'react-bootstrap'
 
@@ -13,6 +14,7 @@ export class App extends Component {
     super(props);
     this.state = {
       city_name: "",
+      name:"",
       type: "",
       lat: "",
       lon: "",
@@ -20,11 +22,13 @@ export class App extends Component {
       img:"",
       error:"",
       error2:"",
+      error3:"",
       showData: false,
       errHandle:false,
       errHandle2:false,
-      city_name:"",
+      errHandle3:false,
       foreCast:[],
+      movieList:[],
     }
   }
   handleLocation = (e) => {
@@ -34,10 +38,12 @@ export class App extends Component {
     })
   }
   handleSubmit = (e) => {
-    e.preventDefault();
+      e.preventDefault();
+    this.setState({name:this.state.city_name})
     let config = {
       method: "GET",
-      baseURL: `https://api.locationiq.com/v1/autocomplete.php?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city_name}`
+      baseURL: `https://api.locationiq.com/v1/autocomplete.php?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&
+      q=${this.state.city_name}`
     }
     
     axios(config).then(res => {
@@ -52,7 +58,8 @@ export class App extends Component {
 
       let map ={
         method: "GET",
-        baseURL: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.lat},${this.state.lon}&zoom=1-18`
+        baseURL: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&
+        center=${this.state.lat},${this.state.lon}&zoom=1-18`
       }
       axios(map).then(res=>{
         let reponseData=res.config.baseURL;
@@ -65,10 +72,18 @@ export class App extends Component {
     .then(res=>{
       console.log(res.data)
       this.setState({
-        city_name:res.data.cityName,
-        foreCast:res.data.foreCast,
+        foreCast:res.data,
     })
-    }).catch(err =>   this.setState({error2:err.toString() , errHandle2:true})  )
+    }).catch(err =>   this.setState({error2:err.toString() , errHandle2:true})  ).then(()=>
+    axios.get(`http://${process.env.REACT_APP_BACKEND_URL}/movies?query=${this.state.name}`))
+    .then(res=>{
+      
+      this.setState({
+        movieList:res.data,
+    })
+    }).catch(err => {  this.setState({error3:err.toString() , errHandle3:true}) })
+    console.log(this.state.movieList)
+    
     
   }
   render() {
@@ -86,13 +101,9 @@ export class App extends Component {
        }
         {
            this.state.showData &&<Weather
-          city_name={this.state.city_name}
           foreCast={this.state.foreCast}
         />
-      }
-        
-            
-          
+      }  
         {
         this.state.errHandle&&<Alert style={{marginTop:"15px"}} >
                 {this.state.error}
@@ -103,7 +114,13 @@ export class App extends Component {
                 {this.state.error2}
                 </Alert>
   }
-      </div>
+  {this.state.showData && <Movie movieList={this.state.movieList} />}
+  {
+        this.state.errHandle2&&<Alert  >
+                {this.state.error3}
+                </Alert>
+  }
+  </div>
     )
   }
 }
