@@ -18,7 +18,7 @@ class Movie extends Component {
                                 <Card.Text>
                                 Released On  :  {Element.released_on}
                                 <br />
-                                Overview :  {Element.overview}
+                                Overview :  {Element.overview} style={{}}
                                 <br />
                                 Popularity :  {Element.popularity}
                                 <br />
