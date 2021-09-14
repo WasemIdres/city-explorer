@@ -62,3 +62,7 @@ img{
     display: grid;
     grid-template-columns: auto auto auto auto;
 }
+.card{
+    height: 650px;
+    overflow: scroll;
+}
