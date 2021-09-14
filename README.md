@@ -123,6 +123,8 @@ Actual time needed to complete: a lot of time
 
 ---
 
+Name of feature: weather api added
+
 Estimate of time needed to complete: 4 hours
 
 Start time: 2:30
@@ -130,3 +132,15 @@ Start time: 2:30
 Finish time: 9:00
 
 Actual time needed to complete: a lot of time 
+
+---
+
+Name of feature: wearther and movie api added
+
+Estimate of time needed to complete: 5
+
+Start time: 3:00
+
+Finish time: 12:00
+
+Actual time needed to complete: a lot of time
