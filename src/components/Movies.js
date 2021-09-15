@@ -14,6 +14,7 @@ class Movies extends Component {
                             popularity={Element.popularity}
                             average_votes={Element.average_votes}
                             total_votes={Element.total_votes}
+                            overview={Element.overview}
                         />
 
 
