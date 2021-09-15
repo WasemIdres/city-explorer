@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
 import {
     Card,
-    Button,
-    Col,
 } from 'react-bootstrap';
 class Movie extends Component {
     render() {
+        {console.log(this.props.movieList.map(Element =>Element))}
+
         return (
             <div className="cardDiv">
                 {
-                    this.props.movieList.map((Element,index )=> {
-                        if (index <21) {
+                    this.props.movieList.map(Element => {
                             return <Card className="card" style={{ width: '22rem' }}>
                             <Card.Img variant="top" src={Element.image_url} style={{ margin: '0' }}/>
                             <Card.Body>
@@ -18,7 +17,7 @@ class Movie extends Component {
                                 <Card.Text>
                                 Released On  :  {Element.released_on}
                                 <br />
-                                Overview :  {Element.overview} style={{}}
+                                Overview :  {Element.overview}
                                 <br />
                                 Popularity :  {Element.popularity}
                                 <br />
@@ -28,10 +27,7 @@ class Movie extends Component {
                                 <br />
                                 </Card.Text>
                             </Card.Body>
-                        </Card>
-                        {index++}
-                        }
-                       
+                        </Card>                   
                     })
                 }
 

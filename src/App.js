@@ -68,23 +68,20 @@ export class App extends Component {
       })
       })
     }).catch(err => {  this.setState({error:err.toString() , errHandle:true}) }).then(()=>
-    axios.get(`http://${process.env.REACT_APP_BACKEND_URL}/weather?lat=${this.state.lat}&lon=${this.state.lon}`))
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}weather?lat=${this.state.lat}&lon=${this.state.lon}`))
     .then(res=>{
       console.log(res.data)
       this.setState({
         foreCast:res.data,
     })
     }).catch(err =>   this.setState({error2:err.toString() , errHandle2:true})  ).then(()=>
-    axios.get(`http://${process.env.REACT_APP_BACKEND_URL}/movies?query=${this.state.name}`))
-    .then(res=>{
-      
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}movies?query=${this.state.name}`))
+    .then(res =>{
+      console.log(res.data)
       this.setState({
-        movieList:res.data,
+          movieList:res.data, 
     })
     }).catch(err => {  this.setState({error3:err.toString() , errHandle3:true}) })
-    console.log(this.state.movieList)
-    
-    
   }
   render() {
     return (
@@ -114,9 +111,10 @@ export class App extends Component {
                 {this.state.error2}
                 </Alert>
   }
-  {this.state.showData && <Movie movieList={this.state.movieList} />}
+  <Movie movieList={this.state.movieList} />
+  {console.log(this.state.movieList)}
   {
-        this.state.errHandle2&&<Alert  >
+        this.state.errHandle3&&<Alert  >
                 {this.state.error3}
                 </Alert>
   }
