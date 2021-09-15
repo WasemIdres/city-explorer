@@ -11,10 +11,10 @@ class Movies extends Component {
                             image_url={Element.image_url}
                             title={Element.title}
                             released_on={Element.released_on}
+                            overview={Element.overview}
                             popularity={Element.popularity}
                             average_votes={Element.average_votes}
                             total_votes={Element.total_votes}
-                            overview={Element.overview}
                         />
 
 
