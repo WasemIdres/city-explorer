@@ -8,10 +8,9 @@ class Location extends Component {
     render() {
         return (
             <div style={{ marginTop: "20px" }}>
-                {/* <h1>{this.props.city_name}</h1>
-                <h2>{this.props.type}</h2>
-                <h3>{this.props.lat}/{this.props.lon}</h3> */}
-                <Table striped bordered hover variant="dark" id={"table"} >
+                {
+
+                    this.props.showData&&<Table striped bordered hover variant="dark" id={"table"} >
                     <thead>
                         <tr>
                             <th>City Name</th>
@@ -28,6 +27,8 @@ class Location extends Component {
 
                     </tbody>
                 </Table>
+                }
+                
                 <Image  src={this.props.img} roundedCircle />
                 
             </div>
